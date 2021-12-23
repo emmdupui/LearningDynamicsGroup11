@@ -2,8 +2,7 @@ from typing import Union, List
 
 import numpy as np
 from egttools.analytical import StochDynamics
-from egttools.games import AbstractGame
-from egttools.numerical import sample_simplex, calculate_nb_states, calculate_state
+from egttools import sample_simplex, calculate_nb_states
 from egttools.utils import transform_payoffs_to_pairwise
 from utils import *
 import random
@@ -12,7 +11,7 @@ from egttools.plotting import draw_stationary_distribution
 import egttools as egt
 
 
-class FixedIncentivesGame(AbstractGame):
+class FixedIncentivesGame(egt.games.AbstractGame):
     def __init__(self, population_state: List[int], group_size: int, endowment: float, c: float, risk: float,
                  M: int, alpha: int, n_E: float, total_incentives: float, pi_t: float, local_scheme=True) -> None:
         """
@@ -50,20 +49,24 @@ class FixedIncentivesGame(AbstractGame):
         self.calculate_payoffs()
 
     def play(self, group_composiiton: Union[List[int], np.ndarray], game_payoffs: np.ndarray) -> None:
+        """
+        Fill game_payoffs with the average payoff of the strategies
+        :param group_composiiton: composition of the group. Respectively  j_e, j_c, j_d
+        :param game_payoffs: array of size self.nb_strategies
+        :return:
+        """
         # Gather contributions
-        contributions = 0.0
         j_e, j_c, j_d = group_composiiton
 
-        payoff_executor = self.competing_payoff_executor(j_c, j_e)
-        payoff_cooperator = self.competing_payoff_cooperator(j_c, j_e)
-        payoff_defector = self.competing_payoff_defector(j_c, j_e)
-
-        game_payoffs[0] = payoff_executor
-        game_payoffs[1] = payoff_cooperator
-        game_payoffs[2] = payoff_defector
-
+        game_payoffs[0] = self.competing_payoff_executor(j_c, j_e)
+        game_payoffs[1] = self.competing_payoff_cooperator(j_c, j_e)
+        game_payoffs[2] = self.competing_payoff_defector(j_c, j_e)
 
     def calculate_payoffs(self) -> np.ndarray:
+        """
+        Fill self.payoffs. For each possible configuration, compute the payoffs of the strategies
+        :return: self.payoffs
+        """
         payoffs_container = np.zeros(shape=(self.nb_strategies,), dtype=np.float64)
         for i in range(self.nb_states):
             # Get group composition
@@ -114,6 +117,12 @@ class FixedIncentivesGame(AbstractGame):
         return self.payoffs
 
     def payoff(self, strategy: int, group_composition: List[int]) -> float:
+        """
+        Return the average payoff of a given strategy in a group composition (j_e, j_c, j_d)
+        :param strategy:
+        :param group_composition:
+        :return:
+        """
         if strategy > self.nb_strategies:
             raise IndexError(f'You must specify a valid index for the strategy [0, {self.nb_strategies}].')
         elif len(group_composition) != self.nb_strategies:
@@ -126,8 +135,6 @@ class FixedIncentivesGame(AbstractGame):
             return self.competing_payoff_cooperator(j_c, j_e)
         else:
             return self.competing_payoff_defector(j_c, j_e)
-
-
 
 
 if __name__ == "__main__":
