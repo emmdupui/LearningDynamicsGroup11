@@ -18,8 +18,11 @@ function prob=probIncrease(state_matrix, state, i_e, i_c, c_increase, increase)
     if i_e < 0 || i_c < 0 || i_e > 100 || i_c > 100
         prob = 0;
     else
+        prob=0;
         new_state = loc_Transform(i_e, i_c);
-        prob  = state_matrix(state, new_state);
+        if new_state <= size(state_matrix)(1)
+            prob  = state_matrix(state, new_state);
+        end
     end
 
 
@@ -41,8 +44,11 @@ function prob=probIncrease(state_matrix, state, i_e, i_c, c_increase, increase)
     if i_e < 0 || i_c < 0 || i_e > 100 || i_c > 100
         prob = prob + 0;
     else
+        prob=0;
         new_state = loc_Transform(i_e, i_c);
-        prob = prob + state_matrix(state, new_state);
+        if new_state <= size(state_matrix)(1)
+            prob = prob + state_matrix(state, new_state);
+        end
     end
 
 end

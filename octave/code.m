@@ -20,6 +20,7 @@ global len
 global normal
 global alpha
 global executor_threshold
+global M
 %%%%%parameter
 Z = 100;
 N = 4;
@@ -36,6 +37,7 @@ pi_f = 0.3; % pi_e in the article
 r = 0.2; %risk
 alpha = 1;
 executor_threshold = 0.25; % n_e = executor_threshold * N
+M = 0.75*N;
 %%%%%%%
 len = (Z+1) * (Z+2) /2;
 normal = nchoosek(Z-1, N-1);
@@ -54,8 +56,8 @@ for i_e = 0 : Z
         neighborLoc13 = Z-neighborLoc11 - neighborLoc12;
         % if valid state
         if  neighborLoc11 >= 0 &&  neighborLoc11<=Z &&  neighborLoc12>=0 &&  neighborLoc12<=Z && neighborLoc13>=0 && neighborLoc13<=Z
-            loc_source1 = loc_Transform(i_e+1,i_c+1);
-            loc_target1 = loc_Transform(neighborLoc11+1,neighborLoc12+1);
+            loc_source1 = loc_Transform(i_e,i_c);
+            loc_target1 = loc_Transform(neighborLoc11,neighborLoc12);
             average_payoff_neighbor11=average_payoff_AD(i_e,i_c);%AD
             average_payoff_neighbor12=average_payoff_C(i_e,i_c);%C
             state_matrix(loc_source1, loc_target1)=(1-mu) * i_ad*i_c *(1 + exp(belta * (average_payoff_neighbor11 - average_payoff_neighbor12)))^-1/(Z*(Z - 1)) + mu * i_ad/(s* Z);% D to P
