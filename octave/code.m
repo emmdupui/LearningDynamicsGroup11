@@ -33,7 +33,7 @@ c = 0.1;
 n_p = 25;%global
 pi_t = 0.03;
 pi_f = 0.3; % pi_e in the article
-r = 0.5; %risk
+r = 0.2; %risk
 alpha = 1;
 executor_threshold = 0.25; % n_e = executor_threshold * N
 %%%%%%%
@@ -68,8 +68,8 @@ for i_e = 0 : Z
         if neighborLoc21>=0 &&  neighborLoc21<=Z &&  neighborLoc22>=0 &&  neighborLoc22<=Z && neighborLoc23>=0 && neighborLoc23<=Z
             average_payoff_neighbor21=average_payoff_C(i_e,i_c);%C
             average_payoff_neighbor22=average_payoff_AD(i_e,i_c);%AD
-            loc_source2 =  loc_Transform(i_e+1, i_c+1);
-            loc_target2 = loc_Transform(neighborLoc21+1, neighborLoc22+1);
+            loc_source2 =  loc_Transform(i_e, i_c);
+            loc_target2 = loc_Transform(neighborLoc21, neighborLoc22);
             state_matrix(loc_source2, loc_target2)=(1-mu) * i_c*i_ad *(1 + exp(belta * (average_payoff_neighbor21 - average_payoff_neighbor22)))^-1/(Z*(Z - 1)) + mu * i_c/(s* Z);% P to D
         end
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
