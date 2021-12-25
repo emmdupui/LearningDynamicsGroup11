@@ -80,8 +80,8 @@ for i_e = 0 : Z
         if neighborLoc31 >= 0 &&  neighborLoc31 <= Z &&  neighborLoc32>=0 &&  neighborLoc32<=Z && neighborLoc33>=0 && neighborLoc33<=Z
             average_payoff_neighbor31=average_payoff_E(i_e,i_c);%E
             average_payoff_neighbor32=average_payoff_AD(i_e,i_c);%AD
-            loc_source3 = loc_Transform(i_e+1,i_c+1);
-            loc_target3 = loc_Transform(neighborLoc31+1,neighborLoc32+1);
+            loc_source3 = loc_Transform(i_e,i_c);
+            loc_target3 = loc_Transform(neighborLoc31,neighborLoc32);
             state_matrix(loc_source3, loc_target3)=(1-mu) * i_e* i_ad*(1 + exp(belta * (average_payoff_neighbor31 - average_payoff_neighbor32)))^-1/(Z*(Z - 1))  + mu * i_e/(s* Z);% C to D
         end
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,8 +92,8 @@ for i_e = 0 : Z
         if neighborLoc41>=0 &&  neighborLoc41<=Z &&  neighborLoc42>=0 &&  neighborLoc42<=Z && neighborLoc43>=0 && neighborLoc43<=Z
             average_payoff_neighbor41=average_payoff_AD(i_e,i_c);%AD
             average_payoff_neighbor42=average_payoff_E(i_e,i_c);%E
-            loc_source4 = loc_Transform(i_e+1,i_c+1);
-            loc_target4 = loc_Transform(neighborLoc41+1,neighborLoc42+1);
+            loc_source4 = loc_Transform(i_e,i_c);
+            loc_target4 = loc_Transform(neighborLoc41,neighborLoc42);
             state_matrix(loc_source4, loc_target4)=(1-mu) * i_ad* i_e*(1 + exp(belta * (average_payoff_neighbor41 - average_payoff_neighbor42)))^-1/(Z*(Z - 1))  + mu * i_ad/(s* Z);% D to C
         end
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,8 +104,8 @@ for i_e = 0 : Z
         if neighborLoc51>=0 &&  neighborLoc51<=Z &&  neighborLoc52>=0 &&  neighborLoc52<=Z && neighborLoc53>=0 && neighborLoc53<=Z
             average_payoff_neighbor51=average_payoff_E(i_e,i_c);%E
             average_payoff_neighbor52=average_payoff_C(i_e,i_c);%C
-            loc_source5 = loc_Transform(i_e+1,i_c+1);
-            loc_target5 = loc_Transform(neighborLoc51+1,neighborLoc52+1);
+            loc_source5 = loc_Transform(i_e,i_c);
+            loc_target5 = loc_Transform(neighborLoc51,neighborLoc52);
             state_matrix(loc_source5, loc_target5)=(1-mu) * i_e* i_c*(1 + exp(belta * (average_payoff_neighbor51 - average_payoff_neighbor52)))^-1/(Z*(Z - 1))  + mu * i_e/(s* Z);% E to C
         end
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -116,8 +116,8 @@ for i_e = 0 : Z
         if neighborLoc61>=0 &&  neighborLoc61<=Z &&  neighborLoc62>=0 &&  neighborLoc62<=Z && neighborLoc63>=0 && neighborLoc63<=Z
             average_payoff_neighbor61=average_payoff_C(i_e,i_c);%C
             average_payoff_neighbor62=average_payoff_E(i_e,i_c);%E
-            loc_source6 = loc_Transform(i_e+1,i_c+1);
-            loc_target6 = loc_Transform(neighborLoc61+1,neighborLoc62+1);
+            loc_source6 = loc_Transform(i_e,i_c);
+            loc_target6 = loc_Transform(neighborLoc61,neighborLoc62);
             state_matrix(loc_source6, loc_target6)=(1-mu) * i_c* i_e*(1 + exp(belta * (average_payoff_neighbor61 - average_payoff_neighbor62)))^-1/(Z*(Z - 1))  + mu * i_c/(s* Z);%C to E
         end
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
