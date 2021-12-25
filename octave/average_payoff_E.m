@@ -31,4 +31,4 @@ function average_payoff_E=average_payoff_E(i_e,i_c)
         end
     end
     average_payoff_E=s1/normal;
-endfunction
+end
