@@ -1,4 +1,4 @@
-function payoff=Payoff_e(j_e, j_c, i_e, i_c)
+function payoff=Payoff_e(j_e, j_c)
     global alpha
     global pi_f
     global N

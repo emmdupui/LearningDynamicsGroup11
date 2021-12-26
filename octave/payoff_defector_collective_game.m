@@ -8,4 +8,4 @@ function payoff=payoff_defector_collective_game(j_c)
     else
         payoff = (1-r)*b;
     end
-endfunction
+end

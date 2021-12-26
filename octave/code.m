@@ -47,6 +47,7 @@ triangle1 = zeros(maxLen,maxLen);
 
 % test every possible configuration in the population Z
 for i_e = 0 : Z
+     clc;disp(strcat(mat2str(i_e), "/", strcat(mat2str(Z))));
     for i_c = 0 : Z - i_e
         i_ad = Z - i_e - i_c; % number of defector
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

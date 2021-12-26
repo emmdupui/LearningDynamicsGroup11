@@ -27,7 +27,7 @@ function average_payoff_C=average_payoff_C(i_e,i_c)
                 E6=nchoosek(i_ad, j_ad);%
             end
             %%%%%%%%%
-             s1 = s1 + Payoff_c(j_e, j_c, i_e, i_c) * E1 * E5 * E6;
+             s1 = s1 + Payoff_c(j_e, j_c+1) * E1 * E5 * E6;
         end
     end
     average_payoff_C=s1/normal;
