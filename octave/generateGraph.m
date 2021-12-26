@@ -62,10 +62,10 @@ for parameter = parameters
     end
     plot(x,y, "marker", "s");
     hold on
-    xlabel("Mixed coefficient, \\alpha");
-    ylabel("Group ahievement, \\eta_G");
-    %stationary_distribution = getStationaryDistribution(state_matrix);
+    xlabel("Mixed coefficient, $\\alpha$");
+    ylabel("Group ahievement, $\\eta_G$");
 end
 
 legend(legends);
 print out.tex -dtikz %generate tikz file
+hgsave("fig.ofig") % can be load with: hgload(filename)
