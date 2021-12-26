@@ -1,8 +1,12 @@
-function averageAchievement = averageGroupAchievment(stationary_distribution)
+function institutionPrevalence = institutionPrevalence(stationary_distribution)
     global Z
     global N
     global M
-    averageAchievement = 0;
+    global LOCAL_SCHEME
+    global executor_threshold
+    global N
+
+    institutionPrevalence = 0;
     for i_e = 0 : Z
         for i_c = 0 : Z - i_e
             i_ad = Z - i_c - i_e;
@@ -31,7 +35,9 @@ function averageAchievement = averageGroupAchievment(stationary_distribution)
                             E3 = nchoosek(i_ad, j_ad);
                         end
 
-                        a = a + E1 * E2 * E3;
+                        if (LOCAL_SCHEME && j_e - executor_threshold*N >= 0) || (~LOCAL_SCHEME && i_e - executor_threshold*N >= 0)
+                             a = a + E1 * E2 * E3;
+                        end
                     end
                 end
             end
@@ -43,7 +49,7 @@ function averageAchievement = averageGroupAchievment(stationary_distribution)
             end
             a = a*E5;
 
-            averageAchievement = averageAchievement + a * stationary_distribution(state);
+            institutionPrevalence = institutionPrevalence + a * stationary_distribution(state);
         end
     end
 end

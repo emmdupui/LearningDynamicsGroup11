@@ -21,7 +21,10 @@ global normal
 global alpha
 global executor_threshold
 global M
+global LOCAL_SCHEME
+
 %%%%%parameter
+LOCAL_SCHEME = 1 % 1 -> local scheme applied, 0 -> global scheme applied
 Z = 100;
 N = 4;
 mu = 1/Z;
