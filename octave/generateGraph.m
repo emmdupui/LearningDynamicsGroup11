@@ -57,15 +57,15 @@ for parameter = parameters
         state_matrix = generateStateMatrix();
         stationary_distribution = getStationaryDistribution(state_matrix);
 
-        y_val = averageGroupAchievment(stationary_distribution);
+        y_val = institutionPrevalence(stationary_distribution);
         y = [y y_val];
     end
     plot(x,y, "marker", "s");
     hold on
-    xlabel("Mixed coefficient, $\\alpha$");
-    ylabel("Group ahievement, $\\eta_G$");
+    xlabel("Mixed coefficient, \\alpha");
+    ylabel("Institution prevalence, \\eta_l");
+    %stationary_distribution = getStationaryDistribution(state_matrix);
 end
 
-legend(legends);
+legend(legends, 'Location', 'southeast');
 print out.tex -dtikz %generate tikz file
-hgsave("fig.ofig") % can be load with: hgload(filename)

@@ -43,7 +43,7 @@ alpha = 1;
 executor_threshold = 0.25; % n_e = executor_threshold * N
 M = 0.75*N;
 
-FLEXIBLE_INCENTIVE = 1 % 1 -> flexible incentives used
+FLEXIBLE_INCENTIVE = 0 % 1 -> flexible incentives used
 enhancement_factor = 3; % lowercase delta in the paper, must be greater than 1
 
 %%%%%%%
