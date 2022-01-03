@@ -24,6 +24,7 @@ global M
 global LOCAL_SCHEME
 global FLEXIBLE_INCENTIVE
 global enhancement_factor
+global error
 
 %%%%%parameter
 LOCAL_SCHEME = 1 % 1 -> local scheme applied, 0 -> global scheme applied
@@ -42,6 +43,8 @@ r = 0.2; %risk
 alpha = 1;
 executor_threshold = 0.25; % n_e = executor_threshold * N
 M = 0.75*N;
+
+error = 0.9;
 
 FLEXIBLE_INCENTIVE = 0 % 1 -> flexible incentives used
 enhancement_factor = 3; % lowercase delta in the paper, must be greater than 1

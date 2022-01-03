@@ -8,6 +8,7 @@ function payoff=Payoff_ad(j_e, j_c, i_e)
     global LOCAL_SCHEME
     global FLEXIBLE_INCENTIVE
     global enhancement_factor
+    global error
 
     if LOCAL_SCHEME == 1
         value_to_test_delta = j_e;
@@ -24,6 +25,6 @@ function payoff=Payoff_ad(j_e, j_c, i_e)
 
     payoff = payoff_defector_collective_game(j_c + j_e);
     if value_to_test_delta >= N*executor_threshold
-        payoff = payoff - (1-alpha)*executive_pool;
+        payoff = payoff - (1-error)*(1-alpha)*executive_pool + error * alpha * executive_pool;
     end
 end
